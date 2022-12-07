@@ -1,0 +1,66 @@
+<div class="container mx-auto px-8 h-screen flex flex-col justify-center items-center bg-slate-50">
+    <div class="flex flex-col w-96 mx-auto p-8  rounded-md bg-white shadow-lg">
+        <!-- title -->
+        <h3
+            class="flex justify-between items-center font-semibold text-xl text-indigo-600 border-b pb-2 border-indigo-200 space-x-1">
+            Create Account
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24"
+                viewBox="0 0 24 24" stroke-width="1.5" stroke="#a5b4fc" fill="none" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <circle cx="12" cy="7" r="4" />
+                <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+            </svg>
+        </h3>
+        <!-- form -->
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="space-y-3 flex flex-col justify-between my-5">
+                <!-- userName -->
+                <div class="flex flex-col space-y-1">
+                    <label for="userName" class="pl-1 text-sm text-slate-500">UserName</label>
+                    <input type="text" id="userName"
+                        class="border h-9 bg-slate-50 rounded outline-none focus:border-indigo-300 focus:bg-indigo-50"
+                        formControlName="userName">
+                </div>
+                <!-- email -->
+                <div class="flex flex-col space-y-1">
+                    <label for="email" class="pl-1 text-sm text-slate-500">Email</label>
+                    <input type="email" id="email"
+                        class="border h-9 bg-slate-50 rounded outline-none focus:border-indigo-300 focus:bg-indigo-50"
+                        formControlName="email">
+                </div>
+                <!-- password -->
+                <div class="flex flex-col space-y-1">
+                    <label for="password" class="pl-1 text-sm text-slate-500">Password</label>
+                    <input type="password" id="password"
+                        class="border h-9 bg-slate-50 rounded outline-none focus:border-indigo-300 focus:bg-indigo-50"
+                        formControlName="password">
+                </div>
+                <!-- password confirmation-->
+                <div class="flex flex-col space-y-1">
+                    <label for="passwordConfirmation" class="pl-1 text-sm text-slate-500">Password Confirmation</label>
+                    <input type="password" id="password"
+                        class="border h-9 bg-slate-50 rounded outline-none focus:border-indigo-300 focus:bg-indigo-50"
+                        formControlName="passwordConfirmation">
+                </div>
+            </div>
+            <!-- submit btn -->
+            <button type="submit" class=" 
+            outline-none
+            flex justify-center
+             bg-gradient-to-r from-indigo-500 
+             to-indigo-700 text-white py-2 rounded-md mt-3 w-full
+             hover:bg-gradient-to-l
+             shadow-lg shadow-indigo-500/50
+             ">SignUp   
+            </button>
+
+            <!-- signIn -->
+            <p class="text-center mt-5">
+                <a [routerLink]="['/signin']" class="text-slate-400 hover:text-slate-500">
+                    SignIn
+                </a>
+            </p>
+        </form>
+    </div>
+</div>
