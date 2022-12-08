@@ -3,8 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-signin',
-  templateUrl: './signin.component.html',
-  styleUrls: ['./signin.component.scss']
+  templateUrl: './signin.component.html'
 })
 export class SigninComponent implements OnInit {
 
@@ -25,6 +24,10 @@ export class SigninComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  get formControls() {
+    return this.form.controls;
   }
 
   onSubmit(){
