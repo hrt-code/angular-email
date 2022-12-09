@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { AuthPageLayoutComponent } from './layout/auth-page-layout/auth-page-layout.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -8,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AuthHeaderComponent } from './partials/auth-header/auth-header.component';
+
 
 
 @NgModule({
@@ -21,7 +23,7 @@ import { AuthHeaderComponent } from './partials/auth-header/auth-header.componen
     CommonModule,
     AuthRoutingModule,
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
   ]
 })
 export class AuthModule { }

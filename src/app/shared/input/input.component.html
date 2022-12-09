@@ -1,7 +1,44 @@
-<!-- userName -->
 <div class="flex flex-col space-y-1">
     <label [for]="id" class="pl-1 text-sm text-slate-500">{{label}}</label>
     <input [type]="type" [placeholder]="placeholder" [id]="id"
-        class="border h-9 pl-2 bg-slate-50 rounded outline-none focus:border-indigo-300 focus:bg-indigo-50"
-        [formControl]="control">
+        class="border h-9 pl-2  rounded outline-none  " [formControl]="control"
+        [class]="showErrors() ?' bg-red-100 border-red-500 focus:bg-red-100 ':'bg-slate-50 focus:border-indigo-300 focus:bg-indigo-50'">
 </div>
+
+
+<!-- errors -->
+<ng-container *ngIf="showErrors()">
+
+    <!-- required -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('required')">
+        this field is required
+    </div>
+
+    <!-- minlength -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('minlength')">
+        minlength is {{control.errors?.minlength?.requiredLength}}
+        and your char is {{ control.errors?.minlength?.actualLength}}
+    </div>
+
+    <!-- minlength -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('maxlength')">
+        minlength is {{control.errors?.maxlength?.requiredLength}}
+        and your char is {{ control.errors?.maxlength?.actualLength}}
+    </div>
+
+    <!-- minlength -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('email')">
+        enter the correct email
+    </div>
+
+    <!-- nonUniqueUsername -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('nonUniqueUsername')">
+        this username is already taken
+    </div>
+
+    <!-- unknownError -->
+    <div class="text-red-600 fw-600 ml-1" *ngIf="control.hasError('unknownError')">
+        unknown error
+    </div>
+
+</ng-container>

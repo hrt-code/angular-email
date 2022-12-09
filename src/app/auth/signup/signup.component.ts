@@ -1,6 +1,9 @@
-import { MatchPasswordService } from './../../validators/match-password.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { UniqueUserNameService } from './../../validators/unique-userName.service';
+import { MatchPasswordService } from './../../validators/match-password.service';
 
 @Component({
   selector: 'app-signup',
@@ -8,16 +11,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
 
+  constructor(
+    private matchPasswordService: MatchPasswordService,
+    private uniqueUserNameService: UniqueUserNameService
+  ) { }
+
   form = new FormGroup({
     userName: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(25)
-    ]),
+    ],
+      [this.uniqueUserNameService.validate.bind(this.uniqueUserNameService)]
+    ),
     email: new FormControl('', [
+      Validators.required,
       Validators.email,
-      Validators.minLength(4),
-      Validators.maxLength(25)
     ]),
     password: new FormControl('', [
       Validators.required,
@@ -35,13 +44,18 @@ export class SignupComponent implements OnInit {
     }
   )
 
-  constructor(private matchPasswordService: MatchPasswordService) { }
-
   ngOnInit(): void {
   }
 
   get formControls() {
     return this.form.controls;
+  }
+
+  showErrorsPasswordDontMatch(){
+    return this.form.get("password")?.dirty &&
+    this.form.get("password")?.touched &&
+    this.form.get("passwordConfirmation")?.dirty &&
+    this.form.get("passwordConfirmation")?.touched;
   }
 
 
