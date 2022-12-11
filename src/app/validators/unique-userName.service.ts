@@ -1,7 +1,7 @@
 
 import { Injectable } from '@angular/core';
 import { AbstractControl, AsyncValidator, ValidationErrors } from '@angular/forms';
-import { catchError, debounceTime, filter, map, Observable, of } from 'rxjs';
+import { catchError, debounceTime, delay, filter, finalize, map, Observable, of } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
 
@@ -11,12 +11,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class UniqueUserNameService implements AsyncValidator {
 
-
+  loading: boolean = false;
 
   constructor(private authService: AuthService) { }
 
   validate(control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> {
 
+    this.loading = true;
 
     return this.authService.usernameAvailable(control.value)
       .pipe(
@@ -30,10 +31,14 @@ export class UniqueUserNameService implements AsyncValidator {
             return of({ nonUniqueUsername: true })
           else
             return of({ unknownError: true })
-        })
+        }),
+        finalize(() => this.loading = false)
       )
 
 
   }
 
 }
+
+
+//   reusable

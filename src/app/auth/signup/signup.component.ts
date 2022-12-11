@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { UniqueUserNameService } from './../../validators/unique-userName.service';
 import { MatchPasswordService } from './../../validators/match-password.service';
+import { delay, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-signup',
@@ -11,9 +12,11 @@ import { MatchPasswordService } from './../../validators/match-password.service'
 })
 export class SignupComponent implements OnInit {
 
+
+
   constructor(
     private matchPasswordService: MatchPasswordService,
-    private uniqueUserNameService: UniqueUserNameService,
+    public uniqueUserNameService: UniqueUserNameService,
     private authService: AuthService
   ) { }
 
@@ -61,19 +64,35 @@ export class SignupComponent implements OnInit {
 
 
   onSubmit() {
+
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
-    this.authService.signup(this.form.value).subscribe(
-      (response) => {console.log("response", response)},
-      (error)=>{
-        if(!error.status)
-          this.form.setErrors({noConnection:true})
-        else
-          this.form.setErrors({unknownError:true})
+
+
+
+
+    this.authService.signup(this.form.value)
+      .subscribe({
+        next: (response) => {
+          console.log("response", response);
+          this.authService.signedIn$.next(true)
+        },
+        error: (error) => {
+          if (!error.status)
+            this.form.setErrors({ noConnection: true })
+          else
+            this.form.setErrors({ unknownError: true })
+        }
       }
+
+        // (response) => {
+        //   console.log("response", response);
+        //   this.authService.signedIn$.next(true)
+        // },
+
 
       )
 

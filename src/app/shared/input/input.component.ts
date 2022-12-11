@@ -14,6 +14,7 @@ export class InputComponent implements OnInit {
   @Input() control: FormControl | any;
   @Input() placeholder: string = "";
   @Input() id: string;
+  @Input() loading: boolean=false;
 
   invalidClassList="bg-red-100 border-red-500 focus:bg-red-100";
   validClassList="bg-slate-50 focus:border-indigo-300 focus:bg-indigo-50"

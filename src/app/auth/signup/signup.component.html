@@ -10,7 +10,7 @@
         <div class="space-y-3 flex flex-col justify-between my-5">
 
             <!-- username -->
-            <app-input type="text" label="username" id="username" [control]="formControls['username']"></app-input>
+            <app-input type="text" label="username" id="username" [loading]="uniqueUserNameService.loading" [control]="formControls['username']"></app-input>
 
             <!-- email -->
             <!-- <app-input type="email" label="Email" id="email" [control]="formControls['email']"></app-input> -->

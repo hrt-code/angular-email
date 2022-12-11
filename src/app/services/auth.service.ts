@@ -1,6 +1,7 @@
 import { environment } from './../../environments/environment.prod';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import { Injectable } from '@angular/core';
 export class AuthService {
 
   private baseUrl = environment.baseApiUrl;
+  signedIn$= new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) { }
 
