@@ -9,11 +9,11 @@
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <div class="space-y-3 flex flex-col justify-between my-5">
 
-            <!-- userName -->
-            <app-input type="text" label="UserName" id="userName" [control]="formControls['userName']"></app-input>
+            <!-- username -->
+            <app-input type="text" label="username" id="username" [control]="formControls['username']"></app-input>
 
             <!-- email -->
-            <app-input type="email" label="Email" id="email" [control]="formControls['email']"></app-input>
+            <!-- <app-input type="email" label="Email" id="email" [control]="formControls['email']"></app-input> -->
 
             <!-- password -->
             <app-input type="password" label="Password" id="password" [control]="formControls['password']">
@@ -23,10 +23,24 @@
             <app-input type="password" label="Password Confirmation" id="passwordConfirmation"
                 [control]="formControls['passwordConfirmation']"></app-input>
 
-            <!-- password dont Match  error -->
+            <!-- PasswordDontMatch error -->
             <ng-container *ngIf="showErrorsPasswordDontMatch()">
                 <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('passwordDontMatch')">
                     please enter the same password
+                </span>
+            </ng-container>
+
+              <!-- PasswordDontMatch error -->
+              <ng-container *ngIf="showErrorsPasswordDontMatch()">
+                <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('noConnection')">
+                    please check your network
+                </span>
+            </ng-container>
+
+              <!-- PasswordDontMatch error -->
+              <ng-container *ngIf="showErrorsPasswordDontMatch()">
+                <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('unknownError')">
+                    There was a problem connecting with the server.
                 </span>
             </ng-container>
 

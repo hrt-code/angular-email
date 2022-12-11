@@ -13,21 +13,22 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private matchPasswordService: MatchPasswordService,
-    private uniqueUserNameService: UniqueUserNameService
+    private uniqueUserNameService: UniqueUserNameService,
+    private authService: AuthService
   ) { }
 
   form = new FormGroup({
-    userName: new FormControl('', [
+    username: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
       Validators.maxLength(25)
     ],
       [this.uniqueUserNameService.validate.bind(this.uniqueUserNameService)]
     ),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.email,
-    ]),
+    // email: new FormControl('', [
+    //   Validators.required,
+    //   Validators.email,
+    // ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
@@ -51,16 +52,31 @@ export class SignupComponent implements OnInit {
     return this.form.controls;
   }
 
-  showErrorsPasswordDontMatch(){
+  showErrorsPasswordDontMatch() {
     return this.form.get("password")?.dirty &&
-    this.form.get("password")?.touched &&
-    this.form.get("passwordConfirmation")?.dirty &&
-    this.form.get("passwordConfirmation")?.touched;
+      this.form.get("password")?.touched &&
+      this.form.get("passwordConfirmation")?.dirty &&
+      this.form.get("passwordConfirmation")?.touched;
   }
 
 
   onSubmit() {
-    console.log(this.form.value);
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+
+    this.authService.signup(this.form.value).subscribe(
+      (response) => {console.log("response", response)},
+      (error)=>{
+        if(!error.status)
+          this.form.setErrors({noConnection:true})
+        else
+          this.form.setErrors({unknownError:true})
+      }
+
+      )
+
   }
 
 }

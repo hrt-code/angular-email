@@ -9,31 +9,43 @@ export class ButtonComponent implements OnChanges {
 
   @Input() type: "submit" | "button" = "button";
   @Input() innerHTML: string;
-  @Input() color: string;
+  @Input() color: "indigo"="indigo";
   @Input() backgroundType: "solid" | "gradient" = "gradient";
-  @Input() textColor: string = "white";
   @Input() padding: string = "py-2";
   @Input() width: string = "w-full";
 
   styleClassList: string;
 
-  constructor() { }
+  constructor() {
+
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
 
     this.styleClassList =
-      //bg type
-      (this.backgroundType == "gradient" ?
-        `bg-gradient-to-r from-${this.color}-500 to-${this.color}-700 hover:bg-gradient-to-l ` :
-        `bg-${this.color}`) +
-      //text color
-      ` text-${this.textColor}` +
-      //shadow
-      ` shadow-${this.color}-500/50` +
-      //padding
+      // padding
       ` ${this.padding}` +
       //width
-      ` ${this.width}`
+      ` ${this.width}`;
+
+    switch (this.color) {
+      case "indigo":
+        default:
+        this.styleClassList +=
+          //bg type
+          (this.backgroundType == "gradient" ?
+            ` bg-gradient-to-r from-indigo-500 to-indigo-700 hover:bg-gradient-to-l ` :
+            ` bg-indigo`) +
+          //text color
+          ` text-white` +
+          //shadow
+          ` shadow-indigo-500/50`
+
+        break;
+    }
+
+
 
   }
 

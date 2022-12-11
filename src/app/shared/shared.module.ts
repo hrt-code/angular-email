@@ -5,11 +5,11 @@ import { InputComponent } from './input/input.component';
 import { ButtonComponent } from './button/button.component';
 
 
-
 @NgModule({
   declarations: [
     InputComponent,
-    ButtonComponent
+    ButtonComponent,
+
   ],
   imports: [
     CommonModule,

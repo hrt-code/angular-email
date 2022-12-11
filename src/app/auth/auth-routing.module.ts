@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  {path:'',redirectTo:" "},
+  {path:'',redirectTo:"signin"},
   {path:'signin',component:SigninComponent},
   {path:'signup',component:SignupComponent}
 ];

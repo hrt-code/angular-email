@@ -6,10 +6,6 @@ module.exports = {
   ],
   theme: {
     extend: {
-      golden: "FFBF0F",
-      yellow: "FFDF00",
-      primary:"524CB0",
-      purple:"9368D9"
     },
     container: {
       center: true,

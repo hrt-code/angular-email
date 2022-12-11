@@ -10,7 +10,7 @@ export class AuthService {
 
   private baseUrl = environment.baseApiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   usernameAvailable(userName: string) {
     return this.http.post<any>(this.baseUrl + '/auth/username', {
@@ -19,4 +19,19 @@ export class AuthService {
   }
 
 
+  signup(values: SignupCredentials) {
+    return this.http.post<SignupResponse>(this.baseUrl + '/auth/signup/', values);
+  }
+
+
+}
+
+export interface SignupCredentials {
+  username: string;
+  password: string;
+  passwordConfirmation: string;
+}
+
+export interface SignupResponse {
+  username: string;
 }
