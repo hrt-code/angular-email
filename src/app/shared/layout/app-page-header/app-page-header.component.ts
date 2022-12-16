@@ -6,18 +6,10 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './app-page-header.component.html',
   styleUrls: ['./app-page-header.component.scss']
 })
-export class AppPageHeaderComponent implements OnInit {
+export class AppPageHeaderComponent  {
 
-  signedIn:boolean=false;
+  constructor(public authService :AuthService) { }
 
-  constructor(private authService :AuthService) { }
 
-  ngOnInit(): void {
-
-  this.authService.signedIn$.subscribe((result)=>{
-    this.signedIn=result;
-  })
-
-  }
 
 }

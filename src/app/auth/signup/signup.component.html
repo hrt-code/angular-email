@@ -10,10 +10,8 @@
         <div class="space-y-3 flex flex-col justify-between my-5">
 
             <!-- username -->
-            <app-input type="text" label="username" id="username" [loading]="uniqueUserNameService.loading" [control]="formControls['username']"></app-input>
-
-            <!-- email -->
-            <!-- <app-input type="email" label="Email" id="email" [control]="formControls['email']"></app-input> -->
+            <app-input type="text" label="username" id="username" [loading]="uniqueUserNameService.loading"
+                [control]="formControls['username']"></app-input>
 
             <!-- password -->
             <app-input type="password" label="Password" id="password" [control]="formControls['password']">
@@ -23,22 +21,22 @@
             <app-input type="password" label="Password Confirmation" id="passwordConfirmation"
                 [control]="formControls['passwordConfirmation']"></app-input>
 
-            <!-- PasswordDontMatch error -->
-            <ng-container *ngIf="showErrorsPasswordDontMatch()">
+            <!-- Password Dont Match error -->
+            <ng-container *ngIf="showErrors()">
                 <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('passwordDontMatch')">
                     please enter the same password
                 </span>
             </ng-container>
 
-              <!-- PasswordDontMatch error -->
-              <ng-container *ngIf="showErrorsPasswordDontMatch()">
+            <!-- noConnection error -->
+            <ng-container *ngIf="showErrors()">
                 <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('noConnection')">
                     please check your network
                 </span>
             </ng-container>
 
-              <!-- PasswordDontMatch error -->
-              <ng-container *ngIf="showErrorsPasswordDontMatch()">
+            <!-- unknownError error -->
+            <ng-container *ngIf="showErrors()">
                 <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('unknownError')">
                     There was a problem connecting with the server.
                 </span>

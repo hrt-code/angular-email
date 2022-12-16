@@ -10,11 +10,25 @@
         <div class="space-y-3 flex flex-col justify-between my-5">
 
             <!-- userName -->
-            <app-input type="text" label="UserName" id="userName" [control]="formControls['userName']"></app-input>
+            <app-input type="text" label="UserName" id="userName" [control]="formControls['username']"></app-input>
 
             <!-- password -->
             <app-input type="password" label="Password" id="password" [control]="formControls['password']">
             </app-input>
+
+            <!-- noConnection error -->
+            <ng-container *ngIf="showErrors()">
+                <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('noConnection')">
+                    please check your network
+                </span>
+            </ng-container>
+
+            <!-- credential error -->
+            <ng-container *ngIf="showErrors()">
+                <span class="text-red-600 fw-600 ml-1 mt-0" *ngIf="form.hasError('credential')">
+                    userName or password is incorrect
+                </span>
+            </ng-container>
 
         </div>
 

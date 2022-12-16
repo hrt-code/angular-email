@@ -5,6 +5,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UniqueUserNameService } from './../../validators/unique-userName.service';
 import { MatchPasswordService } from './../../validators/match-password.service';
 import { delay, finalize } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private matchPasswordService: MatchPasswordService,
     public uniqueUserNameService: UniqueUserNameService,
-    private authService: AuthService
+    private authService: AuthService,
+    private router:Router
   ) { }
 
   form = new FormGroup({
@@ -28,10 +30,6 @@ export class SignupComponent implements OnInit {
     ],
       [this.uniqueUserNameService.validate.bind(this.uniqueUserNameService)]
     ),
-    // email: new FormControl('', [
-    //   Validators.required,
-    //   Validators.email,
-    // ]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(4),
@@ -55,7 +53,7 @@ export class SignupComponent implements OnInit {
     return this.form.controls;
   }
 
-  showErrorsPasswordDontMatch() {
+  showErrors() {
     return this.form.get("password")?.dirty &&
       this.form.get("password")?.touched &&
       this.form.get("passwordConfirmation")?.dirty &&
@@ -70,14 +68,10 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-
-
-
-
     this.authService.signup(this.form.value)
       .subscribe({
         next: (response) => {
-          console.log("response", response);
+          this.router.navigate(['/inbox'])
           this.authService.signedIn$.next(true)
         },
         error: (error) => {
@@ -87,13 +81,6 @@ export class SignupComponent implements OnInit {
             this.form.setErrors({ unknownError: true })
         }
       }
-
-        // (response) => {
-        //   console.log("response", response);
-        //   this.authService.signedIn$.next(true)
-        // },
-
-
       )
 
   }

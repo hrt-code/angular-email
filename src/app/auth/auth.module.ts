@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { AuthHeaderComponent } from './partials/auth-header/auth-header.component';
+import { SignoutComponent } from './signout/signout.component';
 
 
 
@@ -18,7 +19,8 @@ import { AuthHeaderComponent } from './partials/auth-header/auth-header.componen
     SigninComponent,
     SignupComponent,
     AuthPageLayoutComponent,
-    AuthHeaderComponent
+    AuthHeaderComponent,
+    SignoutComponent
   ],
   imports: [
     CommonModule,

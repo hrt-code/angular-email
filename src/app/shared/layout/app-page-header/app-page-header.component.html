@@ -9,7 +9,7 @@
         <nav class="flex items-center space-x-1">
             <ul class="hidden space-x-2 md:inline-flex">
 
-                <ng-container *ngIf="signedIn;else signOut">
+                <ng-container *ngIf="(authService.signedIn$|async);else signOut">
                     <li><a [routerLink]="'/inbox'" routerLinkActive="active"
                             class="flex justify-center items-center cursor-pointer px-4 py-2 font-semibold text-zinc-50 rounded">
                             <i class="zmdi zmdi-inbox fs-24px pr-1"></i>
@@ -17,7 +17,7 @@
                         </a>
                     </li>
 
-                    <li><a [routerLink]="'/singout'" routerLinkActive="active"
+                    <li><a [routerLink]="'/signout'" routerLinkActive="active"
                             class=" cursor-pointer flex justify-center items-center px-4 py-2 font-semibold text-red-500 rounded">
                             <i class="zmdi zmdi-power fs-24px pr-1"></i>
                             Sing Out
