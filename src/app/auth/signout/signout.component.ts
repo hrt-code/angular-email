@@ -16,7 +16,7 @@ export class SignoutComponent implements OnInit {
 
     this.authService.signout()
       .subscribe(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/signin']);
       })
 
   }

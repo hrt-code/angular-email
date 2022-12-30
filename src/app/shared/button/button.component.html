@@ -1,9 +1,10 @@
-<button [type]="type" class=" 
+<button #button [type]="type" class="
 outline-none
 flex justify-center
 rounded-md
-shadow-lg 
- " 
- [class]="styleClassList"
- [innerHTML]="innerHTML">
+shadow-lg" [class]="styleClassList">
+
+  <span *ngIf="!loading">{{this.innerText}}</span>
+  <app-loading *ngIf="loading"></app-loading>
+
 </button>

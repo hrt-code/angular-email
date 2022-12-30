@@ -1,11 +1,12 @@
-import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { finalize } from 'rxjs';
 
+import { AuthService } from './../../services/auth.service';
 import { UniqueUserNameService } from './../../validators/unique-userName.service';
 import { MatchPasswordService } from './../../validators/match-password.service';
-import { delay, finalize } from 'rxjs';
-import { Router } from '@angular/router';
+import { SignedInResponse } from 'src/app/models/signed-in-response.model';
 
 @Component({
   selector: 'app-signup',
@@ -13,14 +14,7 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent implements OnInit {
 
-
-
-  constructor(
-    private matchPasswordService: MatchPasswordService,
-    public uniqueUserNameService: UniqueUserNameService,
-    private authService: AuthService,
-    private router:Router
-  ) { }
+  //#region properties
 
   form = new FormGroup({
     username: new FormControl('', [
@@ -46,7 +40,25 @@ export class SignupComponent implements OnInit {
     }
   )
 
+  loading: boolean = false;
+
+  //#endregion
+
+
+
+  constructor(
+    private matchPasswordService: MatchPasswordService,
+    public uniqueUserNameService: UniqueUserNameService,
+    private authService: AuthService,
+    private router: Router
+  ) { }
+
+
+
   ngOnInit(): void {
+    this.authService.checkAuth().subscribe((response: SignedInResponse) => {
+      if (response.authenticated) this.router.navigate(['/inbox']);
+    });
   }
 
   get formControls() {
@@ -68,7 +80,10 @@ export class SignupComponent implements OnInit {
       return;
     }
 
+    this.loading=true;
+
     this.authService.signup(this.form.value)
+    .pipe(finalize(() => (this.loading = false)))
       .subscribe({
         next: (response) => {
           this.router.navigate(['/inbox'])

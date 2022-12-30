@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, ViewChild, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-button',
@@ -8,15 +8,18 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/cor
 export class ButtonComponent implements OnChanges {
 
   @Input() type: "submit" | "button" = "button";
-  @Input() innerHTML: string;
-  @Input() color: "indigo"="indigo";
+  @Input() innerText: string;
+  @Input() color: "indigo" = "indigo";
   @Input() backgroundType: "solid" | "gradient" = "gradient";
   @Input() padding: string = "py-2";
   @Input() width: string = "w-full";
+  @Input() loading: boolean = false;
+
 
   styleClassList: string;
 
   constructor() {
+
 
 
   }
@@ -31,7 +34,7 @@ export class ButtonComponent implements OnChanges {
 
     switch (this.color) {
       case "indigo":
-        default:
+      default:
         this.styleClassList +=
           //bg type
           (this.backgroundType == "gradient" ?
@@ -48,7 +51,6 @@ export class ButtonComponent implements OnChanges {
 
 
   }
-
 
 
 

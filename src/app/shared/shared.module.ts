@@ -1,3 +1,4 @@
+import { LoadingComponent } from './loading/loading.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -9,7 +10,7 @@ import { ButtonComponent } from './button/button.component';
   declarations: [
     InputComponent,
     ButtonComponent,
-
+    LoadingComponent
   ],
   imports: [
     CommonModule,
@@ -17,7 +18,8 @@ import { ButtonComponent } from './button/button.component';
   ],
   exports:[
     InputComponent,
-    ButtonComponent
+    ButtonComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule { }
