@@ -2,10 +2,10 @@
   <label [for]="id" class="pl-1 text-sm text-slate-500">{{label}}</label>
   <input [type]="type" [placeholder]="placeholder" [id]="id" class="border h-9 pl-2  rounded outline-none  "
     [formControl]="control"
-    [class]="showErrors() ?' bg-red-100 border-red-500 focus:bg-red-100 ':'bg-slate-50 focus:border-indigo-300 focus:bg-indigo-50'">
+    [class]="showErrors() ?' bg-red-100 border-red-500 focus:bg-red-100 ':'bg-slate-50 focus:border-blue-300 '">
 
   <!-- loading -->
-  <app-loading *ngIf="loading"></app-loading>
+  <app-loading class="absolute right-0 top-7" *ngIf="loading"></app-loading>
 
 </div>
 

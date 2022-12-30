@@ -5,7 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { LayoutModule } from './shared/layout/layout.module';
+
 
 @NgModule({
   declarations: [
@@ -14,8 +14,7 @@ import { LayoutModule } from './shared/layout/layout.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    LayoutModule
+    HttpClientModule
   ],
   providers: [
     {provide:HTTP_INTERCEPTORS,useClass:AuthHttpInterceptor,multi:true}

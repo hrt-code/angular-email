@@ -1,46 +1,30 @@
-<header class="sticky top-0 z-30 w-full px-2 py-1 bg-gradient-to-r from-zinc-900 via-zinc-600 to-zinc-900   sm:px-4 ">
+<header class="sticky mt-5 top-0 z-30 w-full px-2 py-1  sm:px-4 ">
     <div class="flex items-center justify-between mx-auto max-w-7xl">
         <a href="#">
-            <h1 class="text-2xl font-extrabold text-zinc-300 flex justify-center items-center pl-2  font-normal">
-                <i class="zmdi zmdi-email fs-50px pr-1 text-indigo-500 mt-1 mr-1"></i>
+            <h1 class="text-xl font-roboto text-white flex justify-center items-center pl-2  font-normal">
+              <img src="../../../../assets/svg/angular.svg" width="50">
                 Angular Email
             </h1>
         </a>
         <nav class="flex items-center space-x-1">
             <ul class="hidden space-x-2 md:inline-flex">
-
-                <ng-container *ngIf="(authService.signedIn$|async);else signOut">
                     <li><a [routerLink]="'/inbox'" routerLinkActive="active"
-                            class="flex justify-center items-center cursor-pointer px-4 py-2 font-semibold text-zinc-50 rounded">
-                            <i class="zmdi zmdi-inbox fs-24px pr-1"></i>
+                            class="flex justify-center text-base items-center cursor-pointer px-1 py-2  text-white rounded">
+                            <i class="zmdi zmdi-inbox fs-20px pr-1"></i>
                             Inbox
                         </a>
                     </li>
 
                     <li><a [routerLink]="'/signout'" routerLinkActive="active"
-                            class=" cursor-pointer flex justify-center items-center px-4 py-2 font-semibold text-red-500 rounded">
-                            <i class="zmdi zmdi-power fs-24px pr-1"></i>
+                            class=" cursor-pointer text-base flex justify-center items-center px-1 py-2  text-white rounded">
+                            <i class="zmdi  zmdi-power fs-20px pr-1"></i>
                             Sign Out
                         </a>
                     </li>
-                </ng-container>
-                <ng-template #signOut>
-                    <li><a [routerLink]="'/signin'" routerLinkActive="active"
-                            class=" flex justify-center items-center cursor-pointer px-4 py-2 font-semibold text-neutral-50 rounded">
-                            Sign In
-                        </a>
-                    </li>
-                    <li><a [routerLink]="'/signup'" routerLinkActive="active"
-                            class="flex justify-center items-center  cursor-pointer px-4 py-2 font-semibold bg-indigo-600 hover:bg-indigo-800 text-white p-2 rounded">
-                            Sign Up
-                        </a>
-                    </li>
-                </ng-template>
-
             </ul>
             <div class="inline-flex md:hidden">
                 <button class="flex-none px-2 ">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24"
                         stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8h16M4 16h16" />
                     </svg>

@@ -6,8 +6,10 @@ import { Component, OnInit , Input } from '@angular/core';
 })
 export class AuthHeaderComponent implements OnInit {
 
+  svgColor:string="#3679f1";
+
   constructor() { }
-  
+
   ngOnInit() {
   }
 

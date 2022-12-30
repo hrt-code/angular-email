@@ -1,7 +1,15 @@
-<div class="container mx-auto px-8 mt-36 flex flex-col justify-center items-center">
-  <div class="flex flex-col w-96 mx-auto p-8  rounded-md bg-white shadow-lg">
 
-    <ng-content ></ng-content>
+<div class="container mx-auto xl:px-8 md:px-4 sm:px-2  mt-28 flex flex-col justify-center items-center">
 
+  <!-- logo -->
+  <div class="flex justify-center items-center mb-5">
+    <img src="../../../../assets/svg/angular.svg" width="75">
+    <h1 class=" text-3xl xl:text-4xl lg:text-4xl font-roboto font-normal text-white"> Angular Email</h1>
   </div>
+
+
+  <div class="flex flex-col xl:w-96 lg:w-96 mx-auto p-8  rounded-md bg-white shadow-lg">
+    <ng-content></ng-content>
+  </div>
+
 </div>
